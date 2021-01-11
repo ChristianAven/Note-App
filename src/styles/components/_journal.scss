@@ -48,6 +48,7 @@
 }
 
 .journal__entry {
+    justify-content: space-between;
     cursor: pointer;
     background-color: white;
     border-radius: 4px;
@@ -84,5 +85,6 @@
 }
 
 .journal__entry-date-box span {
-    font-size: 12px;
+    justify-content: space-between;
+    font-size: 13px;
 }

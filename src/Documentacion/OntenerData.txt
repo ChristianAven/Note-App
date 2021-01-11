@@ -1,0 +1,6 @@
+Para obtener la data de el store se tiene que usar un hooks
+
+const state = useSelector( ({ui}) => ui)
+
+ui es el destructuring de store allí se pone el nombre antes puesto, 
+para confirmar se puede ir a Redux tools

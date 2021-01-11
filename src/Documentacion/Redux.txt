@@ -1,0 +1,65 @@
+Pasos para crear un nuevo estado en el reducer:
+
+1- crear una carpeta donde contendrá el reducer
+    ejemplo:
+
+        export const REDUCER_NAME = (state = initialState, action) => {
+            switch (action.type) {
+                case 'Action1':
+                    return{
+                        ...state,
+                        msgError: action.payload
+                    };
+                
+                case 'Action2':
+                    return{
+                        ...state,
+                        msgError: null
+                    }
+            
+                default:
+                    return state; // nuca pude retornar algo que no sea un estado
+            }
+        }
+
+2- añadirlo en el store, ejemplo:
+
+    import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+    import thunk from 'redux-thunk';
+    import { authReducer } from "../reducers/authReducer";
+    import { uiReducer } from "../reducers/uiReducer";
+
+    const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
+
+    const reducers = combineReducers({
+        auth: authReducer,
+        ui: uiReducer
+    })
+
+
+    export const store = createStore(
+        reducers, 
+        composeEnhancers(applyMiddleware(thunk)),
+    );
+
+
+3- Crear la acccion ("action") crear o añadir en la carpeta actions
+en esta carperta contiene archivos con todas las action de los reducers
+ejemplo de un archivo
+
+import { types } from "../types/types"
+
+export const setError = (err) =>( {
+    type: types.uiSetError,
+    payload: err
+})
+
+export const removeError = () =>( {
+    type: types.uiRemoveError,
+})
+
+4- hacer dispatch en el archivo de react 
+    
+    const dispatch = useDispatch();
+    dispatch(setError('Name is Requeried :V'))

@@ -50,3 +50,13 @@
     box-shadow: 5px 5px $dark-grey;
     height: 150px;
 }
+
+.notes__delete {
+    background-color: red;
+    transition: background-color .3s ease;
+    transition: color .3s ease;
+    &:hover {
+        background-color: $primary;
+        color: red;
+    }
+}
